@@ -1,0 +1,19 @@
+# Configuração MediaMTX v1.15.6
+rtspTransports: [tcp]
+rtspAddress: 0.0.0.0:8554
+webrtcAddress: 0.0.0.0:8889
+webrtcICEServers2:
+  - url: stun:stun.l.google.com:19302
+  - url: stun:stun1.l.google.com:19302
+  - url: turn:relay1.expressturn.com:3480?transport=tcp
+    username: "000000002082938583"
+    password: ZvmKxbeme93Xfr+JaPksCMlaURc=
+  - url: turn:relay1.expressturn.com:3480?transport=udp
+    username: "000000002082938583"
+    password: ZvmKxbeme93Xfr+JaPksCMlaURc=
+
+hlsAddress: 0.0.0.0:8890
+
+paths:
+  all:
+    source: publisher

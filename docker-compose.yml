@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  # 1. Banco de Dados PostgreSQL
+  postgres:
+    image: postgres:14-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 290904
+      POSTGRES_DB: comunica_net
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # 2. Servidor de Mídia MediaMTX
+  mediamtx:
+    image: bluenviron/mediamtx:latest
+    restart: always
+    ports:
+      - "8554:8554"  # Porta RTSP (Entrada FFmpeg)
+      - "8889:8889"  # Porta WebRTC/WebSocket (Saída Navegador)
+      - "8890:8890"  # Porta HLS
+    volumes:
+      # Monta a configuração local no container
+      - ./mediamtx.yml:/mediamtx.yml:ro
+
+volumes:
+  postgres_data:

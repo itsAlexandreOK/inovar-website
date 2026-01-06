@@ -1,65 +1,92 @@
+'use client';
+
+import Header from "@/components/Header";
 import Image from "next/image";
+import { useSession, signOut } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import UserDefaultIcon from "@/components/svg/userDefaultIcon";
+import WhatsappSendMessageButton from "@/components/Whatsapp";
+import Card from "@/components/Cards";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="min-h-screen bg-[#0066FF] text-zinc-900">
+      <Header />
+      <main className="flex items-center gap-60 justify-center ml-40 mr-40 mt-40 mb-80">
+
+        <section>
+          <Image
+            src="/comunica-net-logo.svg"
+            alt="Comunica Net"
+            width={800}
+            height={600}
+            priority
+            className="h-auto w-auto"
+          />
+        </section>
+        
+        <section className="flex items-center justify-center">
+          <div className="bg-white justify-center text-center p-6 shadow-[10px_10px_#000] w-[574px] h-[174px] flex flex-col items-center overflow-hidden border-3">
+            <p className="text-black font-[IntroRust] text-xl">
+              VENHA CONHECER OS MELHORES PLANOS <br></br> DE INTERNET FIBRA ÓTICA DA CIDADE
+            </p>
+            <button className="bg-amber-400 py-2 px-8 rounded-3xl border-2 font-[IntroRust] mt-5 hover:bg-amber-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 cursor-pointer">
+              <span>VER PLANOS</span>
+            </button>
+          </div>
+        </section>
+      </main>
+
+      <div>
+        <WhatsappSendMessageButton>
+        </WhatsappSendMessageButton>  
+      </div>
+
+      {// Seção de Cards
+      }
+
+      <section className="w-full h-dvh" style={{backgroundImage: 'url(/wave-haikei.svg)', backgroundSize: 'cover', backgroundRepeat: 'no-repeat'}}>
+        <div className="flex justify-center items-center flex-col gap-10">
+        <div className="bg-white justify-center text-center p-6 shadow-[10px_10px_#000] w-143 h-25 flex flex-col items-center overflow-hidden border-3 mt-20">
+          <p className="font-[IntroRust]"> 
+            Como podemos te ajudar?
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+
+        <div className=" flex justify-center items-center mt-50 gap-10">
+
+          <div className="flex flex-col gap-10 text-center">
+          <div className="bg-white p-2 border-3 shadow-[8px_8px_#000]">
+            <h2 className="font-[IntroRust]">
+              Monitoramento de Camêras
+            </h2>
+          </div>
+          <Card
+            img="/camera.svg"
+            description="Veja em tempo real as imagens capturadas pelas nossas câmeras instaladas nas praias de São Francisco do Sul e região."
+            buttonText="Acessar Câmeras"
+            buttonLink="/servicos#monitoramento"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </div>
+          
+
+        <div className="flex flex-col gap-10 text-center">
+          <div className="bg-white p-2 border-3 shadow-[8px_8px_#000]">
+            <h2 className="font-[IntroRust]">
+              Planos de Internet
+            </h2>
+          </div>
+          <Card
+            img="/globe.svg"
+            description="Navegue sem limites com nossos planos de internet dedicados para áreas litorâneas. Conexão rápida e estável, onde você estiver."
+            buttonText="Ver Planos"
+            buttonLink="/planos"
+          />
+          </div>
+
         </div>
-      </main>
+        </div>
+      </section>
     </div>
   );
 }
