@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "dev:backend": "tsx src/server.ts",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@heroui/spinner": "^2.2.26",
